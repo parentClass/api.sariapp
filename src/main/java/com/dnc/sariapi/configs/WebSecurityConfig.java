@@ -54,6 +54,15 @@ public class WebSecurityConfig {
                     auth.requestMatchers("/merchant/list").permitAll();
                     auth.requestMatchers("/merchant/search").permitAll();
                     auth.requestMatchers("/merchant").permitAll();
+                    /**
+                     * TODO: remove granting of all permit on merchant category
+                     */
+                    auth.requestMatchers("/merchant/category/create").permitAll();
+                    auth.requestMatchers("/merchant/category/update").permitAll();
+                    auth.requestMatchers("/merchant/category/list").permitAll();
+                    auth.requestMatchers("/merchant/category/remove").permitAll();
+                    auth.requestMatchers("/merchant/category/activate").permitAll();
+                    auth.requestMatchers("/merchant/category/").permitAll();
                     auth.anyRequest().authenticated();
                 }).exceptionHandling(exception -> exception.authenticationEntryPoint(jwtAuthenticationEntryPoint))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

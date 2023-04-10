@@ -1,8 +1,8 @@
 package com.dnc.sariapi.controllers;
 
-import com.dnc.sariapi.models.dtos.ProductCategoryDTO;
+import com.dnc.sariapi.models.dtos.MerchantCategoryDTO;
 import com.dnc.sariapi.models.response.SariBaseResponse;
-import com.dnc.sariapi.services.ProductCategoryService;
+import com.dnc.sariapi.services.MerchantCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,37 +12,37 @@ import org.springframework.web.server.ResponseStatusException;
 
 @Controller
 @CrossOrigin
-@RequestMapping("/product/category")
-public class ProductCategoryController {
+@RequestMapping("/merchant/category")
+public class MerchantCategoryController {
     @Autowired
-    private ProductCategoryService productCategoryService;
+    private MerchantCategoryService merchantCategoryService;
 
     @PostMapping("/create")
-    public ResponseEntity<SariBaseResponse> create(@RequestBody ProductCategoryDTO productCategoryDTO) {
+    public ResponseEntity<SariBaseResponse> create(@RequestBody MerchantCategoryDTO merchantCategoryDTO) {
         return ResponseEntity.ok(
                 SariBaseResponse.builder()
                         .status(HttpStatus.OK.value())
-                        .body(productCategoryService.create(productCategoryDTO))
+                        .body(merchantCategoryService.create(merchantCategoryDTO))
                         .build());
     }
 
     @PutMapping("/update")
-    public ResponseEntity<SariBaseResponse> update(@RequestParam String id, @RequestBody ProductCategoryDTO categoryDTO)
+    public ResponseEntity<SariBaseResponse> update(@RequestParam String id, @RequestBody MerchantCategoryDTO categoryDTO)
             throws ResponseStatusException {
         return ResponseEntity.ok(
                 SariBaseResponse.builder()
                         .status(HttpStatus.OK.value())
-                        .body(productCategoryService.update(id, categoryDTO))
+                        .body(merchantCategoryService.update(id, categoryDTO))
                         .build());
     }
 
     @GetMapping("/list")
-    public ResponseEntity<SariBaseResponse> getAllProducts(@RequestParam Integer maxResult, @RequestParam Integer page)
+    public ResponseEntity<SariBaseResponse> getAllMerchantCategories(@RequestParam Integer maxResult, @RequestParam Integer page)
             throws ResponseStatusException {
         return ResponseEntity.ok(
                 SariBaseResponse.builder()
                         .status(HttpStatus.OK.value())
-                        .body(productCategoryService.getAllProductCategories(maxResult, page))
+                        .body(merchantCategoryService.getAllMerchantCategories(maxResult, page))
                         .build());
     }
 
@@ -51,7 +51,7 @@ public class ProductCategoryController {
         return ResponseEntity.ok(
                 SariBaseResponse.builder()
                         .status(HttpStatus.OK.value())
-                        .body(productCategoryService.getCategoryById(id))
+                        .body(merchantCategoryService.getCategoryById(id))
                         .build());
     }
 
@@ -60,7 +60,7 @@ public class ProductCategoryController {
         return ResponseEntity.ok(
                 SariBaseResponse.builder()
                         .status(HttpStatus.OK.value())
-                        .body(productCategoryService.remove(id))
+                        .body(merchantCategoryService.remove(id))
                         .build());
     }
 
@@ -69,7 +69,7 @@ public class ProductCategoryController {
         return ResponseEntity.ok(
                 SariBaseResponse.builder()
                         .status(HttpStatus.OK.value())
-                        .body(productCategoryService.activateCategory(id))
+                        .body(merchantCategoryService.activateCategory(id))
                         .build());
     }
 }
